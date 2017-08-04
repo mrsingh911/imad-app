@@ -7,9 +7,9 @@ app.use(morgan('combined'));
 
 var articleOne =
 {
-    title: 'Article One | Navjit Singh'
-    heading: 'Article One'
-    date: 'Aug 5,2017'
+    title: 'Article One | Navjit Singh',
+    heading: 'Article One',
+    date: 'Aug 5,2017',
     content:      `   <p>
             This is the actal content that I want to write on my website. Let's see how it looks on the website. This is going to be awesome, I am already tellin you this and this is going to be great.This is the actal content that I want to write on my website. Let's see how it looks on the website. This 
         </p>
@@ -24,7 +24,7 @@ var articleOne =
 function createTemplate(data)
 {
     var title = data.title;
-    var data = data.date;
+    var date = data.date;
     var heading = data.heading;
     var content = data.content;
     
