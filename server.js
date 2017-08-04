@@ -49,15 +49,15 @@ var htmlTemplate = `
     <hr/>
     
     <h3>
-        $[heading]
+        ${heading}
     </h3>
     
     <dev>
-        $[date]
+        ${date}
     </dev>
     
     <dev>
-        $[content]
+        ${content}
     </dev>
 </dev>
 </body>
