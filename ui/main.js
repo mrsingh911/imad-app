@@ -15,5 +15,5 @@ function moveRight(){
 var img = document.getElementById('madi');
 img.onclick = function()
 {
-    var interval = serInterval(moveRight,100);
+    var interval = setInterval(moveRight,100);
 }
