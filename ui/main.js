@@ -38,9 +38,22 @@ var name = nameInput.value;
 var submit = document.getElementById('submit_btn');
 submit.onclick = function()
 {
-    //Make a request to the server and send the name.
-    //Caputre the lisit of names and render it as a list.
-    var names = ['name1','name2','name3','name4'];
+    // Create a request object.
+    var request = new XMLHttpRequest();
+    
+    //Store the response in a variable
+    
+    request.onreadystatechange = function()
+    {
+        if(request.readyState === XMLHttpRequest.DONE)
+        {
+            //Take some action.
+            
+            if(request.status === 200)
+            {
+                   var names = request.responseText;
+                   
+                   names = JSON.parse(name);
     var list = '';
     for( var i=0; i<name.length; i++)
     {
@@ -49,4 +62,14 @@ submit.onclick = function()
     
     var ul = document.getElementById('namelist');
     ul.innerHTML = list;
+            }
+        }
+        //Not done yet.
+    };
+   //Make the request
+   
+   request.open('GET','navjit911.imad.hasura-app.io/submit-name?name='+ name,true);
+   request.send(null);
+
+
 };
