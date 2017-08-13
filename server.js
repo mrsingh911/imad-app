@@ -1,10 +1,17 @@
 var express = require('express');
 var morgan = require('morgan');
 var path = require('path');
-
+var Pool = require('pg').Pool;
 var app = express();
 app.use(morgan('combined'));
 
+var config = {
+    user: 'navjit911',
+    database: 'navjit911',
+    host: 'db.imad.hasura-app.io',
+    port: '5432',
+    password: process.env.DB_PASSWORD
+}; 
  
 var articles = { 
 'article-one':{
@@ -86,6 +93,25 @@ var htmlTemplate = `
 
 return htmlTemplate;
 }
+
+var pool = new Pool(config);
+apt.get('/test-db',function(req,res)
+{
+    //make a select request
+    //return the reposnse with the table
+    pool.query('SELECT * FROM test',function(err,result)
+    {
+        if(err)
+        {
+      res.status(500).send(err.toString());
+        }
+        
+        else{
+            res.send(JSON.stringify(result));
+        }
+    });
+}
+);
 
 var counter = 0;
 app.get('/counter', function(req,res)
