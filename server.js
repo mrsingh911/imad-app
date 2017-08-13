@@ -169,7 +169,7 @@ pool.query("SELECT * FROM article WHERE title = " + req.params.articleName, func
             res.send(createTemplate(articleData));
         }
     }
-})
+});
 var articleData =
    res.send(createTemplate(articleData));
 });
