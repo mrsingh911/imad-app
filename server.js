@@ -4,6 +4,7 @@ var path = require('path');
 var Pool = require('pg').Pool;
 var app = express();
 app.use(morgan('combined'));
+var crypto = require('crypto');
 
 var config = {
     user: 'navjit911',
@@ -94,6 +95,21 @@ var htmlTemplate = `
 return htmlTemplate;
 }
 
+
+function hash(input,salt)
+{
+   //How to use hash
+   var hashed = crypto.pbkdf2Sync(input, salt,10000,512,'sha512');
+   return hashed.toString('hex');
+}
+
+app.get('/hash/:input', function(req,res)
+{
+    var hashedString = hash(req.param.input,'this-is-some-random-string');
+    res.send(hashedString);
+}
+);
+
 var pool = new Pool(config);
 apt.get('/test-db',function(req,res)
 {
@@ -170,6 +186,7 @@ pool.query("SELECT * FROM article WHERE title = '" + req.params.articleName + "'
         }
     }
 });
+
 var articleData =
    res.send(createTemplate(articleData));
 });
